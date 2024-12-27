@@ -6,3 +6,7 @@
 #task_bar::-webkit-scrollbar{
     display: none;
 }
+
+body{
+    background-color: linear-gradient(to right, #1f2937, #111827, #000000);
+}

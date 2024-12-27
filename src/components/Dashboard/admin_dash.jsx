@@ -1,12 +1,17 @@
-import Header from '../../other/Header'
+import Header from "../../other/Header";
+import Createtask from "../../other/Createtask";
+import Alltask from "../../other/Alltask";
 
-const admin_dash = () => {
+const AdminDash = () => {
+
   return (
     <div className="h-screen bg-gray-900 text-white w-full p-10 font-mono">
-      <Header/>
-      
-    </div>
-  )
-}
+      <Header />
+      <Createtask />
+      <Alltask /> 
 
-export default admin_dash
+    </div>
+  );
+};
+
+export default AdminDash;
