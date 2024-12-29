@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-const LoginPage = () => {
+const LoginPage = ({handlesubmit}) => {
+
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const handleInputChange = (e) => {
@@ -10,8 +11,7 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Email:", credentials.email);
-    console.log("Password:", credentials.password);
+    handlesubmit(credentials.email,credentials.password)
     setCredentials({ email: "", password: "" }); // Clear inputs
   };
 

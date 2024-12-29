@@ -2,10 +2,10 @@ import { useEffect } from "react"
 import {setlocalstorage, getlocalstorage } from '../utils/Localstorage'
 
 const Authcontext = ({children}) => {
-    useEffect(() => {
-        setlocalstorage()
-        getlocalstorage()
-      }, [])
+    // useEffect(() => {
+    //     setlocalstorage()
+    //     getlocalstorage()
+    //   }, [])
 
   return (
     <div>
