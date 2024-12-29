@@ -1,8 +1,9 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import LoginPage from './components/Auth/LoginPage';
 import Emp_dash from './components/Dashboard/Emp_dash';
 import Admin_dash from './components/Dashboard/admin_dash';
+import { AuthContext } from './context/Authprovidor';
 
 function App() {
 
@@ -10,11 +11,11 @@ function App() {
 
   const handlesubmit = (email, pass)=>{
     if(email == "admin@gmail.com" && pass == "123"){
-      console.log("this is admin")
+      setuser("admin")
     }
 
     else if (email == "user@gmail.com" && pass == "123"){
-      console.log("this is user ")
+      setuser('user')
     }
 
     else{
@@ -22,9 +23,13 @@ function App() {
     }
   }
 
+  const data = useContext(AuthContext)
+  console.log(data);
+
   return (
     <>
       {!user ? <LoginPage handlesubmit={handlesubmit}/> : ""}
+      {user == "admin" ? <Admin_dash/> : <Emp_dash/>}
     </>
   );
 }

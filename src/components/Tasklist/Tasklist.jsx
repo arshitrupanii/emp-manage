@@ -12,7 +12,7 @@ const Tasklist = () => {
                 </div>
                 <div>
                     <h1 className="text-2xl mt-3">Make youtube video</h1>
-                    <p className="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias eius sint quibusdam. Perspiciatis, aperiam reprehenderit ducimus nihil tempora obcaecati dolorum sint voluptate alias esse eos assumenda veritatis harum? Laborum, aut ad reprehenderit accusantium sequi natus! Impedit, odio quia alias earum, magni mollitia nesciunt </p>
+                    <p className="mt-3 overflow-clip">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias eius sint quibusdam. Perspiciatis, aperiam reprehenderit ducimus nihil tempora obcaecati dolorum sint voluptate alias esse eos assumenda veritatis harum? Laborum, aut ad reprehenderit accusantium sequi natus! Impedit, odio quia alias earum, magni mollitia nesciunt </p>
                 </div>
             </div>
             {/* card */}

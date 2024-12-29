@@ -30,7 +30,7 @@ const Createtask = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} style={{ maxWidth: "400px", margin: "auto" }}>
+            <form onSubmit={handleSubmit} style={{ maxWidth: "400px", margin: "auto", scrollBehavior:"auto" }}>
                 <h2 className="text-3xl mb-5">Create Task</h2>
 
                 <div style={{ marginBottom: "1em" }}>
