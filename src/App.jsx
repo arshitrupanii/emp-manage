@@ -7,32 +7,33 @@ import { AuthContext } from './context/Authprovidor';
 
 function App() {
   const [user, setuser] = useState(null);
-  const [Loggedinuser, setLoggedinuser] = useState(null)
+  const [LoggedinuserData, setLoggedinuserData] = useState(null)
   const Authdata = useContext(AuthContext);
 
+  // this use for checking the user is already logged reload the page 
   useEffect(() => {
     if (Authdata) {
-      const loggedin = localStorage.getItem('LoggedInuser');
-      if (loggedin) {
-        setuser(JSON.parse(loggedin).role);
+      const loggedIn = localStorage.getItem('LoggedInuser');
+      if (loggedIn) {
+        setuser(JSON.parse(loggedIn).role);
       }
     }
   }, [Authdata])
   
-
+  // this function is used for checking the user is valid or not for login
   const handlesubmit = (email, pass) => {
     if (Authdata && Authdata.admin.find((e) => e.email === email && e.password === pass)) {
       const data = Authdata.admin.find((e) => e.email === email && e.password === pass);
       setuser("admin");
       localStorage.setItem('LoggedInuser', JSON.stringify({ role: "admin" }));
-      setLoggedinuser(data);
+      setLoggedinuserData(data);
     }
 
-    if (Authdata && Authdata.employee.find((e) => e.email === email && e.password === pass)) {
+    else if (Authdata && Authdata.employee.find((e) => e.email === email && e.password === pass)) {
       const data = Authdata.employee.find((e) => e.email === email && e.password === pass);
       setuser('user');
       localStorage.setItem('LoggedInuser', JSON.stringify({ role: "user" }));
-      setLoggedinuser(data);
+      setLoggedinuserData(data);
     }
 
     else {
@@ -43,7 +44,7 @@ function App() {
   return (
     <>
       {!user ? <LoginPage handlesubmit={handlesubmit} /> : ""}
-      {user === "user" ? <Emp_dash data={Loggedinuser} /> : (user === "admin" ? <Admin_dash /> : "")}
+      {user === "user" ? <Emp_dash data={LoggedinuserData} /> : (user === "admin" ? <Admin_dash data={LoggedinuserData} /> : "")}
 
     </>
   );

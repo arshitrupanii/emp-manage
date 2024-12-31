@@ -1,7 +1,6 @@
 
-
 const Tasklist = () => {
-  return (
+    return (
     <>
         <div id="task_bar" className=" overflow-x-auto w-full h-[50%] rounded-lg mt-5 flex flex-nowrap  items-center py-5">
             {/* card */}
