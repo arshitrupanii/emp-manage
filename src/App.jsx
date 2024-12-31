@@ -1,45 +1,50 @@
 import './App.css';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import LoginPage from './components/Auth/LoginPage';
 import Emp_dash from './components/Dashboard/Emp_dash';
 import Admin_dash from './components/Dashboard/admin_dash';
 import { AuthContext } from './context/Authprovidor';
 
-
 function App() {
-
-  const [user, setuser] = useState(null)
-  const Authdata = useContext(AuthContext)
-  // const [, set] = useState(second)
+  const [user, setuser] = useState(null);
+  const [Loggedinuser, setLoggedinuser] = useState(null)
+  const Authdata = useContext(AuthContext);
 
   useEffect(() => {
-    if (Authdata && Authdata.employee) {
-      console.log(Authdata.employee);
+    if (Authdata) {
+      const loggedin = localStorage.getItem('LoggedInuser');
+      if (loggedin) {
+        setuser(JSON.parse(loggedin).role);
+      }
     }
-  }, [Authdata]);
+  }, [Authdata])
   
 
-  // console.log(Authdata.employee.email == (("employee1@example.com")));
-  
-  const handlesubmit = (email, pass)=>{
-    if(email == "admin@gmail.com" && pass == "123"){
-      setuser("admin")
+  const handlesubmit = (email, pass) => {
+    if (Authdata && Authdata.admin.find((e) => e.email === email && e.password === pass)) {
+      const data = Authdata.admin.find((e) => e.email === email && e.password === pass);
+      setuser("admin");
+      localStorage.setItem('LoggedInuser', JSON.stringify({ role: "admin" }));
+      setLoggedinuser(data);
     }
-    
-    else if (Authdata && Authdata.employee.find((e)=>{e.email == email && e.password == pass})){
-      setuser('user')
+
+    if (Authdata && Authdata.employee.find((e) => e.email === email && e.password === pass)) {
+      const data = Authdata.employee.find((e) => e.email === email && e.password === pass);
+      setuser('user');
+      localStorage.setItem('LoggedInuser', JSON.stringify({ role: "user" }));
+      setLoggedinuser(data);
     }
-    
-    else{
-      console.log("invalid user found...")
+
+    else {
+      console.log("invalid user found...");
     }
-  }
-  
-  
+  };
+
   return (
     <>
-      {!user ? <LoginPage handlesubmit={handlesubmit}/> : ""}
-      {user == "admin" ? <Admin_dash/> : <Emp_dash/>}
+      {!user ? <LoginPage handlesubmit={handlesubmit} /> : ""}
+      {user === "user" ? <Emp_dash data={Loggedinuser} /> : (user === "admin" ? <Admin_dash /> : "")}
+
     </>
   );
 }

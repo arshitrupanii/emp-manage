@@ -5,10 +5,12 @@ import { setlocalstorage, getlocalstorage } from '../utils/Localstorage'
 export const AuthContext = createContext()
 
 const Authprovidor = ({children}) => {
+    setlocalstorage()
+    const data = getlocalstorage()
 
     return (
         <>
-            <AuthContext.Provider value={Userdata}>
+            <AuthContext.Provider value={data}>
                 {children}
             </AuthContext.Provider>
         </>

@@ -219,6 +219,6 @@ export const setlocalstorage = ()=>{
 
 export const getlocalstorage = ()=>{
     const admin = JSON.parse(localStorage.getItem('admin'));
-    const employee = JSON.parse(localStorage.getItem('employee'));
+    const employee = JSON.parse(localStorage.getItem('employees'));
     return {admin,employee};
 }
