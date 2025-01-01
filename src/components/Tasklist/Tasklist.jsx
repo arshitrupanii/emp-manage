@@ -1,57 +1,38 @@
 
-const Tasklist = () => {
-    return (
-    <>
-        <div id="task_bar" className=" overflow-x-auto w-full h-[50%] rounded-lg mt-5 flex flex-nowrap  items-center py-5">
-            {/* card */}
-            <div className="bg-blue-700 flex flex-col flex-shrink-0 p-4 w-[400px] h-full rounded-lg shadow-lg mx-3">
-                <div className="flex justify-between items-center w-full h-fit">
-                    <h3 className="bg-red-700 h-fit px-3 py-2 rounded-lg">High</h3>
-                    <h3>25 feb,2023</h3>
-                </div>
-                <div>
-                    <h1 className="text-2xl mt-3">Make youtube video</h1>
-                    <p className="mt-3 overflow-clip">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias eius sint quibusdam. Perspiciatis, aperiam reprehenderit ducimus nihil tempora obcaecati dolorum sint voluptate alias esse eos assumenda veritatis harum? Laborum, aut ad reprehenderit accusantium sequi natus! Impedit, odio quia alias earum, magni mollitia nesciunt </p>
-                </div>
-            </div>
-            {/* card */}
-            <div className="bg-lime-800 flex flex-col flex-shrink-0 p-4 w-[400px] h-full rounded-lg shadow-lg mx-3">
-                <div className="flex justify-between items-center w-full h-fit">
-                    <h3 className="bg-red-700 h-fit px-3 py-2 rounded-lg">High</h3>
-                    <h3>25 feb,2023</h3>
-                </div>
-                <div>
-                    <h1 className="text-2xl mt-3">Make youtube video</h1>
-                    <p className="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias eius sint quibusdam. Perspiciatis, aperiam reprehenderit ducimus nihil tempora obcaecati dolorum sint voluptate alias esse eos assumenda veritatis harum? Laborum, aut ad reprehenderit accusantium sequi natus! Impedit, odio quia alias earum, magni mollitia nesciunt </p>
-                </div>
-            </div>
-            {/* card */}
-            <div className="bg-yellow-500 flex flex-col flex-shrink-0 p-4 w-[400px] h-full rounded-lg shadow-lg mx-3">
-                <div className="flex justify-between items-center w-full h-fit">
-                    <h3 className="bg-red-700 h-fit px-3 py-2 rounded-lg">High</h3>
-                    <h3>25 feb,2023</h3>
-                </div>
-                <div>
-                    <h1 className="text-2xl mt-3">Make youtube video</h1>
-                    <p className="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias eius sint quibusdam. Perspiciatis, aperiam reprehenderit ducimus nihil tempora obcaecati dolorum sint voluptate alias esse eos assumenda veritatis harum? Laborum, aut ad reprehenderit accusantium sequi natus! Impedit, odio quia alias earum, magni mollitia nesciunt </p>
-                </div>
-            </div>
-            {/* card */}
-            <div className="bg-orange-500 flex flex-col flex-shrink-0 p-4 w-[400px] h-full rounded-lg shadow-lg mx-3">
-                <div className="flex justify-between items-center w-full h-fit">
-                    <h3 className="bg-red-700 h-fit px-3 py-2 rounded-lg">High</h3>
-                    <h3>25 feb,2023</h3>
-                </div>
-                <div>
-                    <h1 className="text-2xl mt-3">Make youtube video</h1>
-                    <p className="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias eius sint quibusdam. Perspiciatis, aperiam reprehenderit ducimus nihil tempora obcaecati dolorum sint voluptate alias esse eos assumenda veritatis harum? Laborum, aut ad reprehenderit accusantium sequi natus! Impedit, odio quia alias earum, magni mollitia nesciunt </p>
-                </div>
-            </div>
-            
-            
-        </div>
-    </>
-  )
-}
+const Tasklist = ({ data }) => {
+    const total_task = data.tasks
 
-export default Tasklist
+    const taskColors = {
+        high: "bg-red-600",
+        medium: "bg-yellow-500",
+        low: "bg-green-500",
+    };
+
+    return (
+        <div className="py-5">
+            <h2 className="text-3xl font-bold mb-5">Task List</h2>
+            <div id="task_bar" className="flex overflow-x-auto space-x-4 py-5 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300">
+
+                {total_task.map((task, index) => (
+
+                    <div key={index} className={`flex-shrink-0 p-5 w-[350px] h-[350px] rounded-lg shadow-lg ${taskColors[task.category]} text-white`}>
+
+
+                        <div className="flex justify-between items-center mb-3">
+
+                            <h3 className={`px-3 py-1 rounded-full text-sm font-semibold ${task.category === "high" ? "bg-red-800": task.category === "medium" ? "bg-yellow-700" : "bg-green-700"}`}>
+                                {task.category}
+                            </h3>
+                            <h3 className="text-sm">{task.taskDate}</h3>
+                        </div>
+
+                        <h1 className="text-xl font-bold mb-2">{task.taskTitle}</h1>
+                        <p className="text-sm line-clamp-15">{task.taskDescription}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Tasklist;
