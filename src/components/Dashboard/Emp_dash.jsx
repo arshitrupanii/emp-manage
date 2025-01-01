@@ -4,14 +4,12 @@ import Header from "../../other/Header";
 
 const Emp_dash = ({ data }) => {
     return (
-        <>
-            <div className="flex flex-col p-10 h-screen bg-gray-900 text-white font-mono">
-                <Header data={data} />
-                <Tasklist data={data} />    
-                {/* Tasklist */}
-                <Tasklist1 data={data} />
-            </div>
-        </>
+        <div className="flex flex-col p-10 h-auto bg-gray-900 text-white font-mono">
+            <Header data={data} />
+            <Tasklist data={data} />
+            {/* Tasklist */}
+            <Tasklist1 data={data} />
+        </div>
     );
 };
 

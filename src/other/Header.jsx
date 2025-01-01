@@ -5,7 +5,7 @@ const Header = ({ data }) => {
   };
 
   return (
-    <div className="text-white  rounded-lg mb-9">
+    <div className="text-white rounded-lg">
       <div className="flex justify-between items-center">
         {/* Welcome Section */}
         <div>
