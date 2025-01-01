@@ -2,13 +2,13 @@ import Tasklist from "../../other/Tasklist";
 import Tasklist1 from "../Tasklist/Tasklist";
 import Header from "../../other/Header";
 
-const Emp_dash = ( props ) => {
+const Emp_dash = ( { changeUser, data } ) => {
     return (
         <div className="flex flex-col p-10 h-auto bg-gray-900 text-white font-mono">
-            <Header data={props} />
-            <Tasklist data={props.data} />
+            <Header changeUser={changeUser} data={data} />
+            <Tasklist data={data} />
             {/* Tasklist */}
-            <Tasklist1 data={props.data} />
+            <Tasklist1 data={data} />
         </div>
     );
 };

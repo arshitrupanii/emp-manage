@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/Authprovidor';
 
-const AllTask = ({data}) => {
+const AllTask = () => {
 
   const emp_data = useContext(AuthContext).employees;
    

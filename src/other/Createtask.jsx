@@ -23,8 +23,10 @@ const CreateTask = () => {
     // Get the existing tasks from local storage
     const emp = JSON.parse(localStorage.getItem("employees")) || [];
 
+    let employeeFound = false;
     emp.forEach(element => {
       if (element.firstName === assignTo) {
+        employeeFound = true;
         element.tasks = element.tasks || [];
         element.tasks.push(taskData);
         console.log(element.tasks);
@@ -33,6 +35,10 @@ const CreateTask = () => {
         element.taskCounts.active += 1;
       }
     });
+
+    if (!employeeFound) {
+      console.log("Employee not found");
+    }
 
     // Save the updated tasks back to local storage
     localStorage.setItem("employees", JSON.stringify(emp));
@@ -57,6 +63,7 @@ const CreateTask = () => {
               className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
               type="text"
               placeholder='Make a UI design'
+              required
             />
           </div>
           <div>
@@ -66,6 +73,7 @@ const CreateTask = () => {
               onChange={(e) => setDate(e.target.value)}
               className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
               type="date"
+              required
             />
           </div>
           <div>
@@ -76,6 +84,7 @@ const CreateTask = () => {
               className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
               type="text"
               placeholder='employee name'
+              required
             />
           </div>
           <div>
@@ -86,6 +95,7 @@ const CreateTask = () => {
               className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
               type="text"
               placeholder='High, medium, low'
+              required
             />
           </div>
         </div>
@@ -96,6 +106,7 @@ const CreateTask = () => {
             value={taskDescription}
             onChange={(e) => setDescription(e.target.value)}
             className='w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400'
+            required
           ></textarea>
           <button className='bg-emerald-500 py-3 hover:bg-emerald-600 px-5 rounded text-sm mt-4 w-full'>
             Create Task
