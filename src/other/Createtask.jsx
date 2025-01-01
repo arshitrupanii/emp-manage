@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 const CreateTask = () => {
   const [taskTitle, setTaskTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
+  const [taskDescription, setDescription] = useState("");
+  const [taskDate, setDate] = useState("");
   const [assignTo, setAssignTo] = useState("");
   const [category, setCategory] = useState("");
 
@@ -11,12 +11,31 @@ const CreateTask = () => {
     e.preventDefault();
     const taskData = {
       taskTitle,
-      description,
-      date,
-      assignTo,
+      taskDescription,
+      taskDate,
       category,
+      active: true,
+      newTask: true,
+      completed: false,
+      failed: false
     };
-    console.log("Task Created:", taskData);
+
+    // Get the existing tasks from local storage
+    const emp = JSON.parse(localStorage.getItem("employees")) || [];
+
+    emp.forEach(element => {
+      if (element.firstName === assignTo) {
+        element.tasks = element.tasks || [];
+        element.tasks.push(taskData);
+        console.log(element.tasks);
+        element.taskCounts = element.taskCounts || { newTask: 0, active: 0, completed: 0, failed: 0 };
+        element.taskCounts.newTask += 1;
+        element.taskCounts.active += 1;
+      }
+    });
+
+    // Save the updated tasks back to local storage
+    localStorage.setItem("employees", JSON.stringify(emp));
 
     // Clear the form fields
     setTaskTitle("");
@@ -27,81 +46,58 @@ const CreateTask = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-900">
-      <form 
-        onSubmit={handleSubmit} 
-        className="bg-gray-900 shadow-lg rounded-lg p-8 w-full max-w-lg"
-      >
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">Create Task</h2>
-
-        <div className="mb-4">
-          <label htmlFor="taskTitle" className="block text-white font-medium mb-2">Task Title:</label>
-          <input
-            type="text"
-            id="taskTitle"
-            value={taskTitle}
-            onChange={(e) => setTaskTitle(e.target.value)}
-            required
-            className="w-full px-4 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+    <div className='p-5 mt-5 rounded'>
+      <form onSubmit={handleSubmit} className='flex flex-wrap w-full items-start justify-between'>
+        <div className='w-1/2'>
+          <div>
+            <h3 className='text-sm text-gray-300 mb-0.5'>Task Title</h3>
+            <input
+              value={taskTitle}
+              onChange={(e) => setTaskTitle(e.target.value)}
+              className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+              type="text"
+              placeholder='Make a UI design'
+            />
+          </div>
+          <div>
+            <h3 className='text-sm text-gray-300 mb-0.5'>Date</h3>
+            <input
+              value={taskDate}
+              onChange={(e) => setDate(e.target.value)}
+              className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+              type="date"
+            />
+          </div>
+          <div>
+            <h3 className='text-sm text-gray-300 mb-0.5'>Assign to</h3>
+            <input
+              value={assignTo}
+              onChange={(e) => setAssignTo(e.target.value)}
+              className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+              type="text"
+              placeholder='employee name'
+            />
+          </div>
+          <div>
+            <h3 className='text-sm text-gray-300 mb-0.5'>Category</h3>
+            <input
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+              type="text"
+              placeholder='High, medium, low'
+            />
+          </div>
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-white font-medium mb-2">Description:</label>
+        <div className='w-2/5 flex flex-col items-start'>
+          <h3 className='text-sm text-gray-300 mb-0.5'>Description</h3>
           <textarea
-            id="description"
-            value={description}
+            value={taskDescription}
             onChange={(e) => setDescription(e.target.value)}
-            required
-            className="w-full h-32 px-4 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            className='w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400'
           ></textarea>
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="date" className="block text-white font-medium mb-2">Date:</label>
-          <input
-            type="date"
-            id="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-            className="w-full px-4 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="assignTo" className="block text-white font-medium mb-2">Assign To:</label>
-          <input
-            type="text"
-            id="assignTo"
-            value={assignTo}
-            onChange={(e) => setAssignTo(e.target.value)}
-            required
-            className="w-full px-4 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="category" className="block text-white font-medium mb-2">Category:</label>
-          <select
-            id="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-            className="w-full px-4 py-2 border rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="">Select Priority</option>
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-        </div>
-
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="text-white mt-9 bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-          >
+          <button className='bg-emerald-500 py-3 hover:bg-emerald-600 px-5 rounded text-sm mt-4 w-full'>
             Create Task
           </button>
         </div>

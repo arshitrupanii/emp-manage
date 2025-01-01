@@ -1,8 +1,10 @@
-const Header = ({ data }) => {
+const Header = ( props ) => {
   const logOutUser = () => {
     localStorage.setItem("LoggedIn_user", "");
-    window.location.reload();
+    props.changeUser('')
   };
+
+  console.log(props , "header");
 
   return (
     <div className="text-white rounded-lg">
@@ -10,7 +12,7 @@ const Header = ({ data }) => {
         {/* Welcome Section */}
         <div>
           <h1 className="text-3xl font-bold">
-            Hello, {data.firstName}👋
+            Hello, {props.data.firstName}👋
           </h1>
           <p className="text-sm text-gray-200 mt-1">
             Welcome back! Have a productive day ahead.

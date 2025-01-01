@@ -46,7 +46,7 @@ function App() {
   return (
     <>
       {!user ? <LoginPage handlesubmit={handlesubmit} /> : ""}
-      {user == "admin" ? <Admin_dash data={Loggedinuser} /> : (user == "user" ? <Emp_dash data={Loggedinuser} /> : " ")}
+      {user == "admin" ? <Admin_dash data={Loggedinuser} changeUser={setuser} /> : (user == "user" ? <Emp_dash data={Loggedinuser} changeUser={setuser} /> : " ")}
     </>
   );
 }

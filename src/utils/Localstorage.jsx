@@ -5,9 +5,9 @@ const employees = [
         "email": "e@e.com",
         "password": "123",
         "taskCounts": {
-            "active": 3,
-            "newTask": 1,
-            "completed": 2,
+            "active": 2,    // Corrected value
+            "newTask": 1,   // Corrected value
+            "completed": 2, // Corrected value
             "failed": 0
         },
         "tasks": [
@@ -69,9 +69,9 @@ const employees = [
         "email": "employee2@example.com",
         "password": "123",
         "taskCounts": {
-            "active": 3,
-            "newTask": 1,
-            "completed": 1,
+            "active": 2,    // Corrected value
+            "newTask": 1,   // Corrected value
+            "completed": 1, // Corrected value
             "failed": 0
         },
         "tasks": [
@@ -123,9 +123,9 @@ const employees = [
         "email": "employee3@example.com",
         "password": "123",
         "taskCounts": {
-            "active": 4,
-            "newTask": 2,
-            "completed": 2,
+            "active": 1,    // Corrected value
+            "newTask": 2,   // Corrected value
+            "completed": 1, // Corrected value
             "failed": 0
         },
         "tasks": [
@@ -177,9 +177,9 @@ const employees = [
         "email": "employee4@example.com",
         "password": "123",
         "taskCounts": {
-            "active": 3,
-            "newTask": 1,
-            "completed": 0,
+            "active": 2,    // Corrected value
+            "newTask": 1,   // Corrected value
+            "completed": 0, // Corrected value
             "failed": 0
         },
         "tasks": [
@@ -221,9 +221,9 @@ const employees = [
         "email": "employee5@example.com",
         "password": "123",
         "taskCounts": {
-            "active": 4,
-            "newTask": 2,
-            "completed": 2,
+            "active": 1,    // Corrected value
+            "newTask": 2,   // Corrected value
+            "completed": 1, // Corrected value
             "failed": 0
         },
         "tasks": [
@@ -270,6 +270,7 @@ const employees = [
         ]
     }
 ];
+
 
 
 
