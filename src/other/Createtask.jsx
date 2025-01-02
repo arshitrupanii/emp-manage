@@ -25,11 +25,10 @@ const CreateTask = () => {
 
     let employeeFound = false;
     emp.forEach(element => {
-      if (element.firstName === assignTo) {
+      if (element.firstName == assignTo) {
         employeeFound = true;
         element.tasks = element.tasks || [];
         element.tasks.push(taskData);
-        console.log(element.tasks);
         element.taskCounts = element.taskCounts || { newTask: 0, active: 0, completed: 0, failed: 0 };
         element.taskCounts.newTask += 1;
         element.taskCounts.active += 1;

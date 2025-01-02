@@ -5,7 +5,7 @@ import New from "./new";
 
 const Tasklist = ({ data }) => {
     const total_task = data.tasks
-    console.log(total_task);
+
 
     const taskColors = {
         high: "bg-red-600",

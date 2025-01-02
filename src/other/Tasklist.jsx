@@ -1,5 +1,5 @@
 const Tasklist = ({ data }) => {
-    console.log(data);
+
     return (
         <div>
             <div className="flex h-28 mt-5 w-full">
