@@ -1,5 +1,7 @@
+// this dashboard will show all the task of all the employees like table
+
 import React, { useContext } from 'react'
-import { AuthContext } from '../context/Authprovidor';
+import { AuthCxontext } from '../context/Authprovidor';
 
 const AllTask = () => {
 
