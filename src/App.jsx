@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from 'react';
 import LoginPage from './components/Auth/LoginPage';
 import Emp_dash from './components/Dashboard/Emp_dash';
 import Admin_dash from './components/Dashboard/admin_dash';
-import { AuthContext } from './context/Authprovidor';
+import { AuthContext } from './context/Authprovidor.jsx';
 
 function App() {
   const [user, setuser] = useState(null);
