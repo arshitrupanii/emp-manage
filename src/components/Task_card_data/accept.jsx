@@ -6,6 +6,7 @@ const New = ({data, index}) => {
         medium: "bg-yellow-300",
         low: "bg-green-500",
     };
+    // console.log(data, "accept")
 
     const task = data;
     return (

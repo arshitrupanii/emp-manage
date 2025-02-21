@@ -6,7 +6,6 @@ import New from "./new";
 const Tasklist = ({ data }) => {
     const total_task = data.tasks
 
-
     const taskColors = {
         high: "bg-red-600",
         medium: "bg-yellow-500",
@@ -20,13 +19,13 @@ const Tasklist = ({ data }) => {
                
                 {total_task.map((task, index) => {
                     if (task.newTask) {
-                        return <New key={index} data={task} />;
+                        return <New key={index} data={task}  />;
                     }
                     if (task.completed) {
-                        return <Complete key={index} data={task} />;
+                        return <Complete key={index} data={task}  />;
                     }
                     if (task.failed) {
-                        return <Failed key={index} data={task} />;
+                        return <Failed key={index} data={task}  />;
                     }
                     if (task.active && !task.completed || task.active && !task.failed) {
                         return <Accept key={index} data={task} />;
