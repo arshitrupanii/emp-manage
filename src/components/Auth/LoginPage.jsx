@@ -11,8 +11,7 @@ const LoginPage = ({handlesubmit}) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    handlesubmit(credentials.email,credentials.password)
-    setCredentials({ email: "", password: "" }); // Clear inputs
+    handlesubmit(credentials.email,credentials.password);
   };
 
   return (
@@ -59,9 +58,9 @@ const LoginPage = ({handlesubmit}) => {
         </form>
         <p className="text-sm text-center text-gray-400 mt-4">
           Don&apos;t have an account?{" "}
-          <a href="/register" className="text-blue-400 hover:underline">
+          <span className="text-blue-400 hover:underline">
             Sign up
-          </a>
+          </span>
         </p>
       </div>
     </div>

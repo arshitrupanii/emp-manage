@@ -1,9 +1,8 @@
-
 const Header = ({ changeUser, data }) => {
   const logOutUser = () => {
     localStorage.setItem("LoggedIn_user", "");
     changeUser(null);
-  };
+  };  
 
   return (
     <div className="text-white rounded-lg">

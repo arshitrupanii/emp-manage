@@ -10,6 +10,8 @@ function App() {
   const [Loggedinuser, setLoggedinuser] = useState(null);
   const Authdata = useContext(AuthContext);
 
+  // console.log(Authdata)
+
   // this use for checking the user is already logged reload the page 
   useEffect(() => {
     const logged_In = localStorage.getItem('LoggedIn_user');
@@ -23,25 +25,31 @@ function App() {
 
   // this function is used for checking the user is valid or not for login
   const handlesubmit = (email, pass) => {
+
     if (Authdata && Authdata.admin.find((e) => e.email === email && e.password === pass)) {
       const admin_data = Authdata.admin.find((e) => e.email === email && e.password === pass);
       setuser('admin');
       localStorage.setItem('LoggedIn_user', JSON.stringify({ role: "admin", data: admin_data }));
       setLoggedinuser(admin_data);
-    } else if (Authdata && Authdata.employees) {
+    }
+
+    else if (Authdata && Authdata.employees.find((e) => e.email === email && e.password === pass)) {
       const emp_data = Authdata.employees.find((e) => e.email === email && e.password === pass);
       setuser('user');
       localStorage.setItem('LoggedIn_user', JSON.stringify({ role: "user", data: emp_data }));
       setLoggedinuser(emp_data);
-    } else {
+    }
+
+    else {
       console.log("invalid user found...");
+      alert("Invalid credentials! Please try again.");
     }
   };
 
   return (
     <>
       {!user ? <LoginPage handlesubmit={handlesubmit} /> : ""}
-      {user === "admin" ? <Admin_dash data={Loggedinuser} changeUser={setuser} /> : (user === "user" ? <Emp_dash data={Loggedinuser} changeUser={setuser} /> : " ")}
+      {user === "admin" ? <Admin_dash data={Loggedinuser} changeUser={setuser} /> : (user == "user" ? <Emp_dash data={Loggedinuser} changeUser={setuser} /> : " ")}
     </>
   );
 }
