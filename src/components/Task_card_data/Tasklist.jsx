@@ -2,9 +2,11 @@ import Accept from "./accept";
 import Complete from "./complete";
 import Failed from "./failed";
 import New from "./new";
+import { useEffect } from 'react';
 
 const Tasklist = ({ data }) => {
-    const total_task = data.tasks
+    const total_task = data.tasks;
+    
 
     const taskColors = {
         high: "bg-red-600",

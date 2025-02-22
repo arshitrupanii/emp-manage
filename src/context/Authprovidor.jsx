@@ -3,23 +3,19 @@ import { setlocalstorage, getlocalstorage } from '../utils/Localstorage'
 
 export const AuthContext = createContext()
 
-const Authprovidor = ({children}) => {
-    
+const AuthProvider = ({ children }) => {
     const [data, setdata] = useState(null)
-    setlocalstorage()
+
     useEffect(() => {
-        const data = getlocalstorage()
-        setdata(data)
+        const storedData = getlocalstorage()
+        setdata(storedData)
     }, [])
 
-
     return (
-        <>
-            <AuthContext.Provider value={data}>
-                {children}
-            </AuthContext.Provider>
-        </>
+        <AuthContext.Provider value={{ data, setdata }}>  {/* Provide setter */}
+            {children}
+        </AuthContext.Provider>
     )
 }
 
-export default Authprovidor
+export default AuthProvider
