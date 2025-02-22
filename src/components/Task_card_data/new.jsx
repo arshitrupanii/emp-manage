@@ -2,22 +2,30 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/Authprovidor.jsx';
 
 const New = ({ index, data }) => {
-    const { data: employees, setdata } = useContext(AuthContext);  // Get state & setter
-    console.log(data); 
+    const { data: authData, setdata } = useContext(AuthContext);
 
     const handlechange = (task) => {
-        const updatedEmployees = employees.map((employee) => ({
+        if (!authData || !authData.employees) return;
+
+        // ✅ Create a deep copy and update tasks correctly
+        const updatedEmployees = authData.employees.map((employee) => ({
             ...employee,
             tasks: employee.tasks.map((t) =>
-                t.taskTitle === task.taskTitle ? { ...t, newTask: false } : t
+                t.taskTitle === task.taskTitle
+                    ? { ...t, active: true, newTask: false }
+                    : t
             ),
         }));
 
-        // Update localStorage
-        localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+        const updatedData = { employees: updatedEmployees };
 
-        // Update React state
-        setdata(updatedEmployees);
+        // ✅ Update context state
+        setdata(updatedData);
+
+        // ✅ Store the updated full object in localStorage
+        localStorage.setItem("employees", JSON.stringify(updatedData));
+
+        console.log(updatedData, "updated");
     };
 
     const taskColors = {
@@ -47,7 +55,6 @@ const New = ({ index, data }) => {
                     >
                         Accept
                     </button>
-                    {console.log(data)}
                 </div>
             </div>
         </div>

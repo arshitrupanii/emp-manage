@@ -20,6 +20,7 @@ const Tasklist = ({ data }) => {
             <div id="task_bar" className="flex overflow-x-auto space-x-4 py-5 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300">
                
                 {total_task.map((task, index) => {
+                    
                     if (task.newTask) {
                         return <New key={index} data={task}  />;
                     }

@@ -8,9 +8,9 @@ import { AuthContext } from './context/Authprovidor.jsx';
 function App() {
   const [user, setuser] = useState(null);
   const [Loggedinuser, setLoggedinuser] = useState(null);
-  const Authdata = useContext(AuthContext);
+  const Authdata = useContext(AuthContext).data;
 
-  // console.log(Authdata)
+  console.log(Authdata)
 
   // this use for checking the user is already logged reload the page 
   useEffect(() => {
