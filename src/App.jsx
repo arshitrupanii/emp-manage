@@ -1,4 +1,3 @@
-import './App.css';
 import { useContext, useState, useEffect } from 'react';
 import LoginPage from './components/Auth/LoginPage';
 import Emp_dash from './components/Dashboard/Emp_dash';
