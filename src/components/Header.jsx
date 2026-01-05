@@ -1,8 +1,12 @@
-const Header = ({ changeUser, data }) => {
+import { getlocalstorage } from "../utils/Localstorage";
+
+const Header = () => {
+  const {user} = getlocalstorage();
+
   const logOutUser = () => {
-    localStorage.setItem("LoggedIn_user", "");
-    changeUser(null);
-  };  
+    localStorage.removeItem("emp-user");
+    window.location.reload();
+  };
 
   return (
     <div className="text-white rounded-lg">
@@ -10,7 +14,7 @@ const Header = ({ changeUser, data }) => {
         {/* Welcome Section */}
         <div>
           <h1 className="text-3xl font-bold">
-            Hello, {data.firstName}👋
+            Hello, {user.firstName}👋
           </h1>
           <p className="text-sm text-gray-200 mt-1">
             Welcome back! Have a productive day ahead.

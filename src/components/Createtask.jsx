@@ -1,5 +1,3 @@
-// that is create task component which is used to create a new task
-
 import { useState } from 'react';
 
 const CreateTask = () => {

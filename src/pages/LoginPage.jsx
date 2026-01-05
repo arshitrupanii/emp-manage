@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { getlocalstorage } from "../utils/Localstorage";
 
-const LoginPage = ({handlesubmit}) => {
-
+const LoginPage = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [error, seterror] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -11,7 +12,41 @@ const LoginPage = ({handlesubmit}) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    handlesubmit(credentials.email,credentials.password);
+
+    const { employees, admin } = getlocalstorage();
+
+    // check employee
+    const employee = employees.find(
+      (emp) =>
+        emp.email === credentials.email && emp.password === credentials.password
+    );
+
+    if (employee) {
+      localStorage.setItem(
+        "emp-user",
+        JSON.stringify({ role: "employee", ...employee })
+      );
+      window.location.reload();
+      return;
+    }
+
+    // check admin
+    const adminUser = admin.find(
+      (ele) =>
+        ele.email === credentials.email && ele.password === credentials.password
+    );
+
+    if (adminUser) {
+      localStorage.setItem(
+        "emp-user",
+        JSON.stringify({ role: "admin", ...adminUser })
+      );
+      window.location.reload();
+      return;
+    }
+
+    // only if nothing matched
+    seterror(true);
   };
 
   return (
@@ -35,7 +70,10 @@ const LoginPage = ({handlesubmit}) => {
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium mb-1">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium mb-1"
+            >
               Password
             </label>
             <input
@@ -58,10 +96,13 @@ const LoginPage = ({handlesubmit}) => {
         </form>
         <p className="text-sm text-center text-gray-400 mt-4">
           Don&apos;t have an account?{" "}
-          <span className="text-blue-400 hover:underline">
-            Sign up
-          </span>
+          <span className="text-blue-400 hover:underline">Sign up</span>
         </p>
+        {error ? (
+          <p className="text-center mt-5 text-red-500">User doesnt exist</p>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
