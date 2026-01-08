@@ -35,7 +35,7 @@ function App() {
       {user?.role === "employee" && (
         <EmpDashboard user={user} setuser={setuser} />
       )}
-      {user?.role === "admin" && <AdminDash user={user} setuser={setuser} />}
+      {/* {user?.role === "admin" && <AdminDash user={user} setuser={setuser} />} */}
     </>
   );
 }

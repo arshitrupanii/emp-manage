@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../context/Authprovidor.jsx';
 
-const New = ({ index, data }) => {
+const newTask = ({ index, data }) => {
     const Authdata = useContext(AuthContext);
 
     const handlechange = (task) => {
@@ -12,7 +12,6 @@ const New = ({ index, data }) => {
                 }
             })
         })
-
         console.log(newdata)
     }
 
@@ -48,4 +47,4 @@ const New = ({ index, data }) => {
     )
 }
 
-export default New
+export default newTask

@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import TaskCards from "../components/TaskCards";
 import TaskState from "../components/TaskState";
 
 
@@ -12,7 +13,7 @@ const EmpDashboard = (props) => {
       <TaskState user={props.user} />
 
       {/* tasks */}
-      {/* <AllTask /> */}
+      < TaskCards />
     </div>
   );
 };
