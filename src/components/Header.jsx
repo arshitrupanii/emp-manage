@@ -1,11 +1,8 @@
-import { getlocalstorage } from "../utils/Localstorage";
-
-const Header = () => {
-  const {user} = getlocalstorage();
-
+const Header = (props) => {
+  
   const logOutUser = () => {
     localStorage.removeItem("emp-user");
-    window.location.reload();
+    props.setuser(null)
   };
 
   return (
@@ -14,7 +11,7 @@ const Header = () => {
         {/* Welcome Section */}
         <div>
           <h1 className="text-3xl font-bold">
-            Hello, {user.firstName}👋
+            Hello, {props?.user.firstName}👋
           </h1>
           <p className="text-sm text-gray-200 mt-1">
             Welcome back! Have a productive day ahead.

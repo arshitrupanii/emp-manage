@@ -1,7 +1,5 @@
-import { getlocalstorage } from "../utils/Localstorage";
-
-const TaskCount = () => {
-  const { user } = getlocalstorage();
+const TaskState = (props) => {
+  const user = props.user
 
   return (
     <div>
@@ -32,4 +30,4 @@ const TaskCount = () => {
   );
 };
 
-export default TaskCount;
+export default TaskState;

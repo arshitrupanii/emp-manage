@@ -1,4 +1,4 @@
-import { getlocalstorage } from "../utils/Localstorage";
+import { getlocalstorage } from "../../utils/Localstorage";
 
 const AllTask = () => {
   const { employees } = getlocalstorage();

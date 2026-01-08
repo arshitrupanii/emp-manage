@@ -9,7 +9,8 @@ function App() {
   const [user, setuser] = useState(null);
   const [loading, setloading] = useState(true);
 
-  useEffect(() => {
+  // LOADING TODO
+  useEffect(() => {    
     const { employees, admin, user } = getlocalstorage();
     if (!employees || !admin) {
       setlocalstorage();
@@ -21,7 +22,7 @@ function App() {
 
   if (loading) {
     return (
-      <div className="flex text-white items-center justify-center h-screen">
+      <div className="flex bg-black text-white items-center justify-center h-screen">
         <p>Loading data...</p>
       </div>
     );
@@ -29,14 +30,12 @@ function App() {
 
   return (
     <>
-      return (
-      <>
-        {!user && <LoginPage />}
+      {!user && <LoginPage user={user} setuser={setuser} />}
 
-        {user?.role === "employee" && <EmpDashboard />}
-        {user?.role === "admin" && <AdminDash />}
-      </>
-      );
+      {user?.role === "employee" && (
+        <EmpDashboard user={user} setuser={setuser} />
+      )}
+      {user?.role === "admin" && <AdminDash user={user} setuser={setuser} />}
     </>
   );
 }

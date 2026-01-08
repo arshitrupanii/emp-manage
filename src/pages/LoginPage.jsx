@@ -1,15 +1,12 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getlocalstorage } from "../utils/Localstorage";
 
-const LoginPage = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+const LoginPage = (props) => {
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
   const [error, seterror] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials({ ...credentials, [name]: value });
-  };
-
+  // check employee details from localstorage and set emp-user into ls and update user state
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -18,7 +15,7 @@ const LoginPage = () => {
     // check employee
     const employee = employees.find(
       (emp) =>
-        emp.email === credentials.email && emp.password === credentials.password
+        emp.email === emailRef.current.value && emp.password === passwordRef.current.value
     );
 
     if (employee) {
@@ -26,14 +23,13 @@ const LoginPage = () => {
         "emp-user",
         JSON.stringify({ role: "employee", ...employee })
       );
-      window.location.reload();
-      return;
+      props.setuser({ role: "employee", ...employee })
     }
 
     // check admin
     const adminUser = admin.find(
       (ele) =>
-        ele.email === credentials.email && ele.password === credentials.password
+        ele.email === emailRef.current.value && ele.password === passwordRef.current.value
     );
 
     if (adminUser) {
@@ -41,8 +37,7 @@ const LoginPage = () => {
         "emp-user",
         JSON.stringify({ role: "admin", ...adminUser })
       );
-      window.location.reload();
-      return;
+      props.setuser({ role: "admin", ...adminUser })
     }
 
     // only if nothing matched
@@ -60,10 +55,7 @@ const LoginPage = () => {
             </label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={credentials.email}
-              onChange={handleInputChange}
+              ref={emailRef}
               className="w-full px-4 py-2 text-white bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your email"
               required
@@ -78,10 +70,7 @@ const LoginPage = () => {
             </label>
             <input
               type="password"
-              id="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleInputChange}
+              ref={passwordRef}
               className="w-full px-4 py-2 text-white bg-gray-700 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your password"
               required
