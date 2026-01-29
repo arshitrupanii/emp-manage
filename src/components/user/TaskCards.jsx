@@ -19,19 +19,8 @@ const TaskCards = ({ user, setuser }) => {
               <Active key={index} task={task} user={user} setuser={setuser} />
             );
 
-          if (task.completed)
-            return (
-              <Completed
-                key={index}
-                task={task}
-                user={user}
-                setuser={setuser}
-              />
-            );
-          if (task.failed)
-            return (
-              <Failed key={index} task={task} user={user} setuser={setuser} />
-            );
+          if (task.completed) return <Completed key={index} task={task} />;
+          if (task.failed) return <Failed key={index} task={task} />;
           return null;
         })}
       </div>
