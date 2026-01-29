@@ -96,7 +96,7 @@ const employees = [
                 "category": "medium"
             },
             {
-                "active": true,
+                "active": false,
                 "newTask": true,
                 "completed": false,
                 "failed": false,
@@ -130,7 +130,7 @@ const employees = [
         },
         "tasks": [
             {
-                "active": true,
+                "active": false,
                 "newTask": true,
                 "completed": false,
                 "failed": false,
@@ -160,7 +160,7 @@ const employees = [
                 "category": "low"
             },
             {
-                "active": true,
+                "active": false,
                 "newTask": true,
                 "completed": false,
                 "failed": false,
@@ -184,7 +184,7 @@ const employees = [
         },
         "tasks": [
             {
-                "active": true,
+                "active": false,
                 "newTask": true,
                 "completed": false,
                 "failed": false,
@@ -228,7 +228,7 @@ const employees = [
         },
         "tasks": [
             {
-                "active": true,
+                "active": false,
                 "newTask": true,
                 "completed": false,
                 "failed": false,
@@ -258,7 +258,7 @@ const employees = [
                 "category": "low"
             },
             {
-                "active": true,
+                "active": false,
                 "newTask": true,
                 "completed": false,
                 "failed": false,
