@@ -1,14 +1,19 @@
-// import Header from "../components/Header";
-// import Createtask from "../components/Createtask";
-// import Alltask from "../components/Alltask";
+import Header from "../components/Header";
+import Createtask from "../components/admin/Createtask";
+import Alltask from "../components/admin/Alltask";
 
-const AdminDash = () => {
+const AdminDash = ({ user, setuser }) => {
 
   return (
-    <div className="h-[100%] text-white w-[100%] bg-gray-900 p-10 font-mono">
-      {/* <Header />
+    <div className="flex flex-col p-10 gap-10">
+      {/* Header */}
+      <Header user={user} setuser={setuser} />
+
+      {/* create task */}
       <Createtask />
-      <Alltask /> */}
+
+      {/* all task show table */}
+      <Alltask />
     </div>
   );
 };

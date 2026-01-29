@@ -1,19 +1,17 @@
 import Header from "../components/Header";
-import TaskCards from "../components/TaskCards";
-import TaskState from "../components/TaskState";
+import TaskState from "../components/user/TaskState";
+import TaskCards from "../components/user/TaskCards";
 
-
-const EmpDashboard = (props) => {
-
+const EmpDashboard = ({ user, setuser }) => {
   return (
-    <div className="flex flex-col p-10 h-auto bg-gray-900 text-white font-mono">
-      <Header user={props.user} setuser={props.setuser}  />
+    <div className="flex flex-col p-10 gap-10">
+      <Header user={user} setuser={setuser} />
 
       {/* task state */}
-      <TaskState user={props.user} />
+      <TaskState user={user} />
 
       {/* tasks */}
-      < TaskCards />
+      <TaskCards user={user} setuser={setuser} />
     </div>
   );
 };

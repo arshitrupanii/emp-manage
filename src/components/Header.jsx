@@ -1,31 +1,21 @@
-const Header = (props) => {
-  
+const Header = ({user, setuser}) => {
   const logOutUser = () => {
     localStorage.removeItem("emp-user");
-    props.setuser(null)
+    setuser(null);
   };
 
   return (
-    <div className="text-white rounded-lg">
-      <div className="flex justify-between items-center">
-        {/* Welcome Section */}
-        <div>
-          <h1 className="text-3xl font-bold">
-            Hello, {props?.user.firstName}👋
-          </h1>
-          <p className="text-sm text-gray-200 mt-1">
-            Welcome back! Have a productive day ahead.
-          </p>
-        </div>
+    <div className="bg-[#1e1e1e] p-8 rounded-lg flex justify-between items-center">
+      {/* Welcome Section */}
+      <div>
+        <p className="text-[#7f8186]">Welcome back!</p>
+        <h1 className="text-3xl font-bold">{user.firstName} 👋🏻</h1>
+      </div>
 
-        <div>
-          <button
-            onClick={logOutUser}
-            className="bg-red-700 hover:bg-red-800 text-white font-semibold py-2 px-4 rounded-md shadow-md transition-transform transform hover:scale-105"
-          >
-            Log Out
-          </button>
-        </div>
+      <div>
+        <button onClick={logOutUser} className="btn bg-[#17b880]">
+          Log Out
+        </button>
       </div>
     </div>
   );
