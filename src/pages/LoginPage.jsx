@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { getlocalstorage } from "../utils/Localstorage";
 
-const LoginPage = (props) => {
+const LoginPage = ({ setuser }) => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [error, seterror] = useState(false);
@@ -24,7 +24,7 @@ const LoginPage = (props) => {
         "emp-user",
         JSON.stringify({ role: "employee", ...employee }),
       );
-      props.setuser({ role: "employee", ...employee });
+      setuser({ role: "employee", ...employee });
     }
 
     // check admin
@@ -39,7 +39,7 @@ const LoginPage = (props) => {
         "emp-user",
         JSON.stringify({ role: "admin", ...adminUser }),
       );
-      props.setuser({ role: "admin", ...adminUser });
+      setuser({ role: "admin", ...adminUser });
     }
 
     // only if nothing matched

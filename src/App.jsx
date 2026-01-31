@@ -10,7 +10,7 @@ function App() {
   const [loading, setloading] = useState(true);
 
   // LOADING TODO
-  useEffect(() => {    
+  useEffect(() => {
     const { employees, admin, user } = getlocalstorage();
     if (!employees || !admin) {
       setlocalstorage();
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <>
-      {!user && <LoginPage user={user} setuser={setuser} />}
+      {!user && <LoginPage setuser={setuser} />}
 
       {user?.role === "employee" && (
         <EmpDashboard user={user} setuser={setuser} />

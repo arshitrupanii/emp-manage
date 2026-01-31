@@ -20,9 +20,13 @@ const New = ({ task, user, setuser }) => {
       },
     };
 
-    const updatedEmployees = employees.map((emp) =>
-      emp.id === user.id ? updatedUser : emp,
-    );
+    const updatedEmployees = employees.map((emp) => {
+      if (emp.id === user.id) {
+        const { role, ...userWithoutRole } = updatedUser;
+        return userWithoutRole;
+      }
+      return emp;
+    });
 
     setuser(updatedUser);
 
@@ -41,7 +45,9 @@ const New = ({ task, user, setuser }) => {
       </div>
 
       <h1 className="text-xl flex-1">{task?.taskTitle}</h1>
-      <p className="text-[#9a9fa5] flex-1 w-full flex-nowrap">{task?.taskDescription}</p>
+      <p className="text-[#9a9fa5] flex-1 w-full flex-nowrap">
+        {task?.taskDescription}
+      </p>
 
       <div className="flex flex-1 gap-4">
         <button

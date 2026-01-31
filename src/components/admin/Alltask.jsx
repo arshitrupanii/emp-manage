@@ -1,8 +1,4 @@
-import { getlocalstorage } from "../../utils/Localstorage";
-
-const AllTask = () => {
-  const { employees } = getlocalstorage();
-
+const AllTask = ({ emp }) => {
   return (
     <div className="p-5 rounded mt-10">
       <div className="bg-red-400 mb-2 py-2 px-4 flex justify-between rounded">
@@ -14,7 +10,7 @@ const AllTask = () => {
       </div>
 
       <div>
-        {employees.map(function (elem, idx) {
+        {emp.map(function (elem, idx) {
           return (
             <div
               key={idx}
