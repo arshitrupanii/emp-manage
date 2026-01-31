@@ -41,7 +41,7 @@ const New = ({ task, user, setuser }) => {
       </div>
 
       <h1 className="text-xl flex-1">{task?.taskTitle}</h1>
-      <p className="text-[#9a9fa5] flex-1">{task?.taskDescription}</p>
+      <p className="text-[#9a9fa5] flex-1 w-full flex-nowrap">{task?.taskDescription}</p>
 
       <div className="flex flex-1 gap-4">
         <button
