@@ -33,7 +33,7 @@ const Active = ({ task, user, setuser }) => {
     };
 
     const updatedEmployees = employees.map((emp) => {
-      if (emp.id === user.id) {
+      if (emp.firstName === user.firstName) {
         const { role, ...userWithoutRole } = updatedUser;
         return userWithoutRole;
       }
