@@ -47,40 +47,41 @@ const LoginPage = ({ setuser }) => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#0a0a0a]">
-      <div className="w-full max-w-lg p-10 bg-[#1e1e1e] rounded-lg">
-        <h2 className="text-3xl font-bold text-center mb-10">Welcome back</h2>
+    <div className="flex items-center justify-center min-h-screen bg-[#0a0a0a] px-4">
+      <div className="w-full max-w-lg bg-[#1e1e1e] rounded-lg p-4 sm:p-6 lg:p-10 mx-auto">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-6 sm:mb-10">
+          Welcome back
+        </h2>
 
-        <form className="flex flex-col gap-6" onSubmit={handleLogin}>
-          <div>
-            <input
-              type="email"
-              ref={emailRef}
-              className="w-full p-4 bg-[#222222] rounded-lg"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              ref={passwordRef}
-              className="w-full p-4 bg-[#222222] rounded-lg "
-              placeholder="Enter your password"
-              required
-            />
-          </div>
+        <form className="flex flex-col gap-4 sm:gap-6" onSubmit={handleLogin}>
+          <input
+            type="email"
+            ref={emailRef}
+            className="w-full p-3 sm:p-4 bg-[#222222] rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#0fb87f]/60"
+            placeholder="Enter your email"
+            required
+          />
+
+          <input
+            type="password"
+            ref={passwordRef}
+            className="w-full p-3 sm:p-4 bg-[#222222] rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#0fb87f]/60"
+            placeholder="Enter your password"
+            required
+          />
+
           <button
             type="submit"
-            className="w-full bg-[#0fb87f] py-2 px-4 rounded-lg"
+            className="w-full bg-[#0fb87f] py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-medium transition active:scale-95"
           >
             Login
           </button>
         </form>
-        {error ? (
-          <p className="text-center mt-5 text-red-500">User doesnt exist</p>
-        ) : (
-          ""
+
+        {error && (
+          <p className="text-center mt-4 sm:mt-5 text-sm sm:text-base text-red-500">
+            User doesn’t exist
+          </p>
         )}
       </div>
     </div>

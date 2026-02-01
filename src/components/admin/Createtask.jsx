@@ -37,7 +37,6 @@ const CreateTask = ({ emp, setemp }) => {
       return;
     }
 
-
     // task add to emp state
     const task = {
       active: false,
@@ -73,23 +72,25 @@ const CreateTask = ({ emp, setemp }) => {
     taskDescription.current.value = "";
     taskDate.current.value = "";
     assignTo.current.value = "";
-    category.current.value = "";
+    category.current.value = "High";
   };
 
   return (
-    <div className="p-5 mt-5 rounded">
+    <div className="mt-5">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-wrap w-full items-start justify-between"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full"
       >
         {/* LEFT */}
-        <div className="w-1/2">
+        <div className="flex flex-col gap-4">
           {/* Task Title */}
           <div>
-            <h3 className="text-sm text-gray-300 mb-1">Task Title</h3>
+            <h3 className="text-xs sm:text-sm text-gray-300 mb-1">
+              Task Title
+            </h3>
             <input
               ref={taskTitle}
-              className="text-sm py-2 px-3 w-4/5 rounded bg-transparent border border-gray-400 mb-4 outline-none"
+              className="w-full text-sm py-2 px-3 rounded bg-transparent border border-gray-400 outline-none"
               type="text"
               placeholder="Make a UI design"
               required
@@ -98,10 +99,10 @@ const CreateTask = ({ emp, setemp }) => {
 
           {/* Date */}
           <div>
-            <h3 className="text-sm text-gray-300 mb-1">Date</h3>
+            <h3 className="text-xs sm:text-sm text-gray-300 mb-1">Date</h3>
             <input
               ref={taskDate}
-              className="text-sm py-2 px-3 w-4/5 rounded bg-transparent border border-gray-400 mb-4 outline-none"
+              className="w-full text-sm py-2 px-3 rounded bg-transparent border border-gray-400 outline-none"
               type="date"
               required
             />
@@ -109,10 +110,10 @@ const CreateTask = ({ emp, setemp }) => {
 
           {/* Assign To */}
           <div>
-            <h3 className="text-sm text-gray-300 mb-1">Assign to</h3>
+            <h3 className="text-xs sm:text-sm text-gray-300 mb-1">Assign to</h3>
             <input
               ref={assignTo}
-              className="text-sm py-2 px-3 w-4/5 rounded bg-transparent border border-gray-400 mb-4 outline-none"
+              className="w-full text-sm py-2 px-3 rounded bg-transparent border border-gray-400 outline-none"
               type="text"
               placeholder="Ex.. Ronak"
               required
@@ -121,13 +122,13 @@ const CreateTask = ({ emp, setemp }) => {
 
           {/* Category */}
           <div>
-            <h3 className="text-sm text-gray-300 mb-1">Category</h3>
+            <h3 className="text-xs sm:text-sm text-gray-300 mb-1">Category</h3>
             <select
               ref={category}
-              className="text-sm py-2 px-3 w-4/5 rounded bg-[#0a0a0a] text-white border border-gray-400 mb-4 outline-none"
+              className="w-full text-sm py-2 px-3 rounded bg-[#0a0a0a] text-white border border-gray-400 outline-none"
               required
             >
-              <option value="High" disabled>
+              <option value="" disabled>
                 Select category
               </option>
               <option value="High">High</option>
@@ -138,18 +139,21 @@ const CreateTask = ({ emp, setemp }) => {
         </div>
 
         {/* RIGHT */}
-        <div className="w-2/5 flex flex-col">
-          <h3 className="text-sm text-gray-300 mb-1">Description</h3>
-          <textarea
-            ref={taskDescription}
-            className="w-full h-44 text-sm py-2 px-4 rounded bg-transparent border border-gray-400 outline-none"
-            required
-          />
+        <div className="flex flex-col gap-4">
+          <div>
+            <h3 className="text-xs sm:text-sm text-gray-300 mb-1">
+              Description
+            </h3>
+            <textarea
+              ref={taskDescription}
+              className="w-full h-32 sm:h-44 text-sm py-2 px-4 rounded bg-transparent border border-gray-400 outline-none resize-none"
+              required
+            />
+          </div>
 
           <button
             type="submit"
-            onKeyDown={(e) => (e.target.value === "enter" ? handleSubmit : "")}
-            className="bg-emerald-500 hover:bg-emerald-600 py-3 px-5 rounded text-sm mt-4 w-full"
+            className="bg-emerald-500 hover:bg-emerald-600 py-3 px-5 rounded text-sm w-full transition active:scale-95"
           >
             Create Task
           </button>
