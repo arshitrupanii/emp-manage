@@ -4,13 +4,13 @@ import Failed from "../taskCards/Failed";
 import New from "../taskCards/New";
 
 const TaskCards = ({ user, setuser }) => {
-
+  
   return (
     <div className="bg-[#1e1e1e] p-4 rounded-md pb-10 h-auto">
       <h1 className="text-xl font-bold mb-6">Your Tasks</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {user?.tasks.map((task, index) => {
+        {[...user?.tasks].reverse().map((task, index) => {
           if (task.newTask)
             return (
               <New key={index} task={task} user={user} setuser={setuser} />
